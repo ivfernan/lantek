@@ -39,10 +39,11 @@ public class CuttingMachineClient : ICuttingMachineClient
 
                 var resultContent = response.Content.ReadAsStringAsync().Result;
                 machines = JsonSerializer.Deserialize<List<CuttingMachine>>(resultContent);
-                
-                machines.OrderBy(x => x.name).ToList().ForEach(delegate(CuttingMachine cm) {
-                    Console.WriteLine(cm.name + " - "+cm.manufacturer);
-                });
+                if (machines!=null){
+                    machines.OrderBy(x => x.name).ToList().ForEach(delegate(CuttingMachine cm) {
+                        Console.WriteLine(cm.name + " - "+cm.manufacturer);
+                    });
+               }
             }
             catch (Exception e)
             {       
